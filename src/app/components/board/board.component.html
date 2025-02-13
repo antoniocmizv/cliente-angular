@@ -1,0 +1,7 @@
+<div *ngFor="let row of boardData">
+  <div *ngFor="let cell of row" class="cell">
+    <span *ngIf="cell === 1">🌳</span>
+    <span *ngIf="cell === 2">👤</span>
+    <span *ngIf="cell === 0">⬜</span>
+  </div>
+</div>
