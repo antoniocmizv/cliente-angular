@@ -1,12 +1,20 @@
+// language: typescript
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { GameConnectionService } from './services/game-connection.service';
+import { GameBoardComponent } from "./game-board/game-board.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `<app-game-board></app-game-board>`,
+  styleUrls: ['./app.component.css'],
+  imports: [GameBoardComponent]
 })
 export class AppComponent {
-  title = 'cliente-angular';
+  constructor(private gameConn: GameConnectionService) {
+    this.gameConn.init('http://localhost:3000', () => {
+      console.log('Conectado al servidor');
+    }, () => {
+      console.log('Desconectado del servidor');
+    });
+  }
 }

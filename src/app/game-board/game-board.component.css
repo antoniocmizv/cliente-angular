@@ -1,0 +1,74 @@
+h1{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  color: #ff0000;
+
+}
+.board-row {
+    display: flex;
+}
+
+.board-cell {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+}
+
+.board-cell.bush {
+    background-color: green;
+}
+
+.board-cell.player {
+    background-image: url('../../assets/flecha.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%;
+}
+
+.board-cell.player.up {
+    transform: rotate(0deg);
+}
+
+.board-cell.player.right {
+    transform: rotate(90deg);
+}
+
+.board-cell.player.down {
+    transform: rotate(180deg);
+}
+
+.board-cell.player.left {
+    transform: rotate(270deg);
+}
+
+.player-in-bush {
+
+    opacity: 0.5;
+    background-color: transparent;
+
+
+}
+
+
+.controls {
+    margin-top: 20px;
+    display: grid;
+    grid-template-areas:
+        ". up ."
+        "left . right"
+        ". down ."
+        "hide hide hide";
+    gap: 5px;
+    width: 150px;
+}
+
+.controls button {
+    padding: 10px;
+    cursor: pointer;
+}
+
+#hide {
+    grid-area: hide;
+}
+
