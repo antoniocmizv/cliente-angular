@@ -72,3 +72,8 @@ h1{
     grid-area: hide;
 }
 
+
+.board-cell.player.current-player {
+    border: 1px solid #ff0000; /* Ejemplo: borde rojo para diferenciar */
+    box-shadow: 0 0 2px #ff0000;
+}
