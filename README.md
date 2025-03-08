@@ -1,59 +1,86 @@
-# ClienteAngular
+# Documentación del Cliente Angular para Juego Multijugador
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.7.
+## Descripción General
+Este proyecto es un cliente Angular que implementa una interfaz gráfica para un juego multijugador basado en turnos.
+El juego permite a varios jugadores conectarse a un servidor mediante WebSockets para jugar en un entorno interactivo.
 
-## Development server
+## Arquitectura del Proyecto
+- Cliente Angular organizado en módulos.
+- Comunicación en tiempo real vía WebSockets.
+- Gestión de estados y ruteo con Angular Router.
+- Interfaz gráfica responsiva adaptada a distintos dispositivos.
 
-To start a local development server, run:
+## Requisitos
+- Node.js (versión LTS recomendada)
+- Angular CLI
+- Dependencias definidas en package.json
 
+## Instalación
+```bash
+npm install
+```
+
+## Ejecución
 ```bash
 ng serve
 ```
+Abrir en el navegador: http://localhost:4200/
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Tecnologías Utilizadas
+- Angular
+- TypeScript
+- HTML/CSS
+- WebSockets
 
-## Code scaffolding
+## Contribuciones
+- Clonar el repositorio.
+- Crear ramas para nuevas funcionalidades o corrección de errores.
+- Realizar pull requests para integrar cambios.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Licencia
+Distribuido bajo la licencia MIT.
 
-```bash
-ng generate component component-name
-```
+## Tecnologías Utilizadas
+- Angular – Framework para la creación de aplicaciones web.
+- TypeScript – Lenguaje que añade tipado estático a JavaScript.
+- HTML/CSS – Estructura y estilos de la interfaz de usuario.
+- WebSockets – Comunicación en tiempo real entre el cliente y el servidor.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Componentes y Funcionalidades Principales
+1. AppComponent
+Es el componente raíz que inicializa la aplicación y establece la conexión inicial con el servidor de WebSockets.
 
-```bash
-ng generate --help
-```
+2. GameBoardComponent
+Encargado de mostrar el tablero de juego y gestionar las interacciones del usuario. Se encarga de inicializar la interfaz gráfica y renderizar el estado del juego.
 
-## Building
 
-To build the project run:
+## Servicios
+# GameConnectionService
+Administra la comunicación con el servidor mediante WebSockets. Se encarga de:
 
-```bash
-ng build
-```
+Establecer la conexión al servidor.
+Enviar eventos y acciones del usuario (movimientos, rotaciones, disparos).
+Recibir actualizaciones en tiempo real del estado del juego
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+## Clases de Ayuda
+# GameService
+Gestiona el estado interno del juego y procesa los eventos que provienen del servidor. Entre sus responsabilidades:
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- Definir y gestionar los estados del juego: WAITING, PLAYING, ENDED.
+- Manejar la incorporación de nuevos jugadores y la actualización del estado del juego.
+- Coordinar la actualización de la interfaz gráfica a través de la clase Ui.
 
-```bash
-ng test
-```
 
-## Running end-to-end tests
+# Ui
+Se encarga de la representación gráfica del juego, es decir, de renderizar el tablero, los controles y la información relevante (como mensajes de fin de partida).
 
-For end-to-end (e2e) testing, run:
 
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Flujo de Datos
+# Acciones del Usuario: 
+- El usuario realiza acciones (mover, rotar, disparar).
+- Captura de Eventos: Las acciones se capturan en la interfaz gráfica gestionada por la clase Ui.
+- Comunicación: Los eventos se envían al servidor a través del GameConnectionService.
+- Procesamiento del Servidor: El servidor procesa las acciones y envía el nuevo estado del juego.
+- Actualización: GameConnectionService delega la actualización a GameService, que actualiza el estado local.
+- Renderizado: Se vuelve a renderizar la UI con los datos actualizados del juego.
